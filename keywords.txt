@@ -1,0 +1,80 @@
+###############################
+# Classes (KEYWORD1)
+###############################
+
+EletronicComponent     KEYWORD1
+Acelerometer           KEYWORD1
+ColorSensor            KEYWORD1
+UltrasonicSensor       KEYWORD1
+Led                    KEYWORD1
+Motor                  KEYWORD1
+MotorController        KEYWORD1
+OmniweelController     KEYWORD1
+
+
+###############################
+# Métodos (KEYWORD2)
+###############################
+
+# Abstraído de EletronicComponent
+start                  KEYWORD2
+
+#            Acelerometer
+getx                   KEYWORD2
+gety                   KEYWORD2
+getz                   KEYWORD2
+
+#            UltrasonicSensor
+getDistance            KEYWORD2
+getDistanceInMeters    KEYWORD2
+
+#ALTERAR NO FINAL DE SEMANA
+#            Led
+getState               KEYWORD2
+segtState              KEYWORD2
+setOn                  KEYWORD2
+isOn                   KEYWORD2
+
+#setBlinking            KEYWORD2
+#setLightLevel          KEYWORD2
+#setInterval            KEYWORD2
+#getBlinking            KEYWORD2
+#getLightLevel          KEYWORD2
+#getInterval            KEYWORD2
+#blink                  KEYWORD2
+#noBlink                KEYWORD2
+#setLightLevel          KEYWORD2
+
+#            Motor
+setDirection           KEYWORD2
+setVelocity            KEYWORD2
+getDirection           KEYWORD2
+getVelocity            KEYWORD2
+toggleDirection        KEYWORD2
+run                    KEYWORD2
+stop                   KEYWORD2
+
+#            MotorController
+setAll                 KEYWORD2
+moveAllTo              KEYWORD2
+getMotors              KEYWORD2
+
+#            OmniweelController
+moveForward            KEYWORD2
+moveBackward           KEYWORD2
+moveLeft               KEYWORD2
+moveRight              KEYWORD2
+moveForLeft            KEYWORD2
+moveForRight           KEYWORD2
+moveBackLeft           KEYWORD2
+moveBackRight          KEYWORD2
+moveTo                 KEYWORD2
+getMotorController     KEYWORD2
+
+###############################
+# Constantes (LITERAL1)
+###############################
+
+PWMHIGH                LITERAL1
+PWMLOW                 LITERAL1
+NULLINT                LITERAL1
