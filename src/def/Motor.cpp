@@ -9,8 +9,8 @@ void Motor::invertDirection() {
 
 // PUBLIC
 
-Motor::Motor(uint_8 leftPin, uint_8 rightPin, uint_8 enable, bool direction,
-             uint_8 velocity) {
+Motor::Motor(uint8_t leftPin, uint8_t rightPin, uint8_t enable, bool direction,
+             uint8_t velocity) {
   this->leftPin = leftPin;
   this->rightPin = rightPin;
   this->enable = enable;
@@ -27,15 +27,15 @@ void Motor::start() {
 
 // SETS
 
-void Motor::setLeftPin(uint_8 leftPin) { this->leftPin = leftPin; }
+void Motor::setLeftPin(uint8_t leftPin) { this->leftPin = leftPin; }
 
-void Motor::setRightPin(uint_8 rightPin) { this->rightPin = rightPin; }
+void Motor::setRightPin(uint8_t rightPin) { this->rightPin = rightPin; }
 
-void Motor::setEnablePin(uint_8 enable) { this->enable = enable; }
+void Motor::setEnablePin(uint8_t enable) { this->enable = enable; }
 
 void Motor::setDirection(bool direction) { this->direction = direction; }
 
-void Motor::setVelocity(uint_8 velocity) {
+void Motor::setVelocity(uint8_t velocity) {
   this->velocity = velocity;
 
   analogWrite(this->getEnablePin(), this->velocity);
@@ -43,15 +43,15 @@ void Motor::setVelocity(uint_8 velocity) {
 
 // GETS
 
-uint_8 Motor::getLeftPin() { return this->leftPin; }
+uint8_t Motor::getLeftPin() { return this->leftPin; }
 
-uint_8 Motor::getRightPin() { return this->rightPin; }
+uint8_t Motor::getRightPin() { return this->rightPin; }
 
-uint_8 Motor::getEnablePin() { return this->enablePin; }
+uint8_t Motor::getEnablePin() { return this->enablePin; }
 
 bool Motor::getDirection() { return this->direction; }
 
-uint_8 Motor::getVelocity() { return this->velocity; }
+uint8_t Motor::getVelocity() { return this->velocity; }
 
 void Motor::toggleDirection() {
   this->setDirection(!this->getDirection());

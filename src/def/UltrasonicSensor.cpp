@@ -14,7 +14,7 @@ void UltrasonicSensor::calculateDistance() {
 }
 
 // PUBLIC
-UltrasonicSensor::UltrasonicSensor(uint_8 trigger, uint_8 echo) {
+UltrasonicSensor::UltrasonicSensor(uint8_t trigger, uint8_t echo) {
   this->trigger = trigger;
   this->echo = echo;
 }

@@ -1,6 +1,6 @@
 #include "../dec/InfraredSensor.h"
 
-InfraredSensor::InfraredSensor(uint_8 pin) { this->pin = pin; }
+InfraredSensor::InfraredSensor(uint8_t pin) { this->pin = pin; }
 
 void InfraredSensor::start() { pinMode(this->pin, INPUT); }
 

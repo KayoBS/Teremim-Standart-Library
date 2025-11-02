@@ -5,33 +5,34 @@
 
 class Motor : public EletronicComponent {
 private:
-  uint_8 leftPin;
-  uint_8 rightPin;
-  uint_8 enablePin;
+  uint8_t leftPin;
+  uint8_t rightPin;
+  uint8_t enablePin;
 
   bool direction;
-  uint_8 velocity;
+  uint8_t velocity;
 
   void invertDirection();
 
 public:
-  Motor(uint_8 leftPin, uint_8 rightPin, bool enable, uint_8 velocity);
+  Motor(uint8_t leftPin, uint8_t rightPin, uint8_t enable, bool direction,
+        uint8_t velocity);
 
   void start() override;
 
-  void setLeftPin(uint_8 leftPin);
-  void setRightPin(uint_8 rightPin);
-  void setEnablePin(uint_8 enable);
+  void setLeftPin(uint8_t leftPin);
+  void setRightPin(uint8_t rightPin);
+  void setEnablePin(uint8_t enable);
 
-  uint_8 getLeftPin();
-  uint_8 getRightPin();
-  uint_8 getEnablePin();
+  uint8_t getLeftPin();
+  uint8_t getRightPin();
+  uint8_t getEnablePin();
 
   void setDirection(bool direction);
-  void setVelocity(uint_8 velocity);
+  void setVelocity(uint8_t velocity);
 
   bool getDirection();
-  uint_8 getVelocity();
+  uint8_t getVelocity();
 
   void toggleDirection();
   void run();

@@ -6,14 +6,14 @@
 class Led : public EletronicComponent {
 private:
   bool state;
-  uint_8 pin;
+  uint8_t pin;
 
 public:
-  Led(uint_8 pin);
+  Led(uint8_t pin);
   void start();
 
-  // void setPin( uint_8 pin );
-  // uint_8 getPin();
+  // void setPin( uint8_t pin );
+  // uint8_t getPin();
 
   // getters
   bool getState();

@@ -1,6 +1,6 @@
 #include "../dec/Led.h"
 
-Led::Led(uint_8 pin) : pin(pin) {}
+Led::Led(uint8_t pin) : pin(pin) {}
 
 void Led::start() { pinMode(pin, OUTPUT); }
 

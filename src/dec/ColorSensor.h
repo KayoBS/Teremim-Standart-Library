@@ -5,11 +5,11 @@
 
 class ColorSensor : public EletronicComponent {
 private:
-  uint_8 S0;
-  uint_8 S1;
-  uint_8 S2;
-  uint_8 S3;
-  uint_8 OUT;
+  uint8_t S0;
+  uint8_t S1;
+  uint8_t S2;
+  uint8_t S3;
+  uint8_t OUT;
 
   unsigned int red;
   unsigned int blue;
@@ -20,7 +20,7 @@ private:
   void readBlue();
 
 public:
-  ColorSensor(uint_8 S0, uint_8 S1, uint_8 S2, uint_8 S3, uint_8 OUT);
+  ColorSensor(uint8_t S0, uint8_t S1, uint8_t S2, uint8_t S3, uint8_t OUT);
 
   void start();
 

@@ -21,7 +21,8 @@ void ColorSensor::readBlue() {
 }
 
 // PUBLIC
-ColorSensor::ColorSensor(uint_8 S0, uint_8 S1, uint_8 S2, uint_8 S3, uint_8 OUT)
+ColorSensor::ColorSensor(uint8_t S0, uint8_t S1, uint8_t S2, uint8_t S3,
+                         uint8_t OUT)
     : S0(S0), S1(S1), S2(S2), S3(S3), OUT(OUT), red(0), blue(0), green(0) {}
 
 void ColorSensor::start() override {
