@@ -4,7 +4,7 @@
 void ColorSensor::readRed() {
   digitalWrite(S2, LOW);
   digitalWrite(S3, LOW);
-  red = pulseIn(OUT, digitalRead(OUT) == HIGH ? LOW : HIGH) + 2;
+  red = pulseIn(OUT, digitalRead(OUT) == HIGH ? LOW : HIGH) + redError;
   this->red = red;
 }
 void ColorSensor::readGreen() {
@@ -16,14 +16,13 @@ void ColorSensor::readGreen() {
 void ColorSensor::readBlue() {
   digitalWrite(S2, LOW);
   digitalWrite(S3, HIGH);
-  blue = pulseIn(OUT, digitalRead(OUT) == HIGH ? LOW : HIGH) + 3;
+  blue = pulseIn(OUT, digitalRead(OUT) == HIGH ? LOW : HIGH) + blueError;
   this->blue = blue;
 }
 
 // PUBLIC
-ColorSensor::ColorSensor(uint8_t S0, uint8_t S1, uint8_t S2, uint8_t S3,
-                         uint8_t OUT)
-    : S0(S0), S1(S1), S2(S2), S3(S3), OUT(OUT), red(0), blue(0), green(0) {}
+ColorSensor::ColorSensor(uint8_t S0, uint8_t S1, uint8_t S2, uint8_t S3, uint8_t OUT, uint8_t blackLineValueLine, uint8_t redError, uint8_t blueError)
+    : S0(S0), S1(S1), S2(S2), S3(S3), blackLineValueLine(blackLineValueLine), redError(redError), blueError(blueError), OUT(OUT), red(0), blue(0), green(0) {}
 
 void ColorSensor::start() override {
   pinMode(S0, OUTPUT);
@@ -32,37 +31,46 @@ void ColorSensor::start() override {
   pinMode(S3, OUTPUT);
   pinMode(OUT, INPUT);
 
-  digitalWrite(S0, LOW);
-  digitalWrite(S1, HIGH);
+  delay(100);
+  readColors();
+  this->myr = this->red;
+  this->myg = this->green;
+  this->myb = this->blue;
+
+  delay(200);
 }
 
 // IS methods
 bool ColorSensor::isWhite() { // sitcom do lab
-  if (getRed(true) <= 12 && getGreen(true) <= 12 && getBlue(true) <= 12)
+  if (retRed() <= (myr + 1) && retGreen() <= (myg + 1) && retBlue() <= (myb + 1))
     return true;
   else
     return false;
 }
 bool ColorSensor::isRed() {
-  if (getRed(true) < getBlue(true) && getRed(true) <= getGreen(true))
+  if (retRed() < retBlue() && retRed() <= retGreen())
     return true;
   else
     return false;
 }
 bool ColorSensor::isBlue() {
-  if (getBlue(true) < getGreen(true) && getBlue(true) < getRed(true))
+  if (retBlue() < retGreen() && retBlue() < retRed())
     return true;
   else
     return false;
 }
 bool ColorSensor::isGreen() {
-  if (getGreen(true) < getRed(true) && getGreen(true) < getBlue(true))
+  if (retGreen() < retRed() && retGreen() < retBlue())
     return true;
   else
     return false;
 }
 bool ColorSensor::isBlack() {
-  return !(isWhite() && isRed() && isGreen() && isBlue());
+  this->readColors();
+  if(retRed() >= blackLineValueLine && retGreen() >= blackLineValueLine && retBlue() >= blackLineValueLine)
+    return true;
+  else
+    return false;
 }
 unsigned int getRed() {
   readRed();
@@ -70,7 +78,10 @@ unsigned int getRed() {
 }
 
 // GETTERS without parameters
-unsigned int ColorSensor::getRed() { readRed() return this->red; }
+unsigned int ColorSensor::getRed() {
+  readRed();
+  return this->red
+}
 unsigned int ColorSensor::getGreen() {
   readGreen();
   return this->green;
@@ -81,23 +92,14 @@ unsigned int ColorSensor::getBlue() {
 }
 
 // GETTERS with parameters
-unsigned int ColorSensor::getRedUnread() {
-  if (unread)
+unsigned int ColorSensor::retRed() {
     return this->red;
-  else
-    return 0;
 }
-unsigned int ColorSensor::getGreen(bool unread) {
-  if (unread)
+unsigned int ColorSensor::retRed() {
     return this->green;
-  else
-    return 0;
 }
-unsigned int ColorSensor::getBlue(bool unread) {
-  if (unread)
+unsigned int ColorSensor::retRed() {
     return this->blue;
-  else
-    return 0;
 }
 
 // readColors();

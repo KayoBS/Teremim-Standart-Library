@@ -8,5 +8,8 @@ bool Led::getState() { return this->state; }
 
 void Led::setState(bool state) { this->state = state; }
 
+void Led::setOn(bool state) {
+    this->setState(state);
+    digitalWrite(pin, this->getState());
+}
 bool Led::isOn() { this->getState(); }
-void Led::setOn(bool state) { this->setState(state); }
