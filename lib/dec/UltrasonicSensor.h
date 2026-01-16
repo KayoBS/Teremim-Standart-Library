@@ -5,15 +5,15 @@
 
 class UltrasonicSensor : public EletronicComponent {
 private:
-  uint8_t trigger;
-  uint8_t echo;
+  byte trigger;
+  byte echo;
   double duration;
   double distance;
 
   void calculateDistance();
 
 public:
-  UltrasonicSensor(uint8_t trigger, uint8_t echo);
+  UltrasonicSensor(byte trigger, byte echo);
 
   void start();
 

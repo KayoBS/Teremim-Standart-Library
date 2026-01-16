@@ -14,11 +14,11 @@ void UltrasonicSensor::calculateDistance() {
 }
 
 // PUBLIC
-UltrasonicSensor::UltrasonicSensor(uint8_t trigger, uint8_t echo) {
+UltrasonicSensor::UltrasonicSensor(byte trigger, byte echo) {
   this->trigger = trigger;
   this->echo = echo;
 }
-void UltrasonicSensor::start() override {
+void UltrasonicSensor::start() {
   pinMode(trigger, OUTPUT);
   pinMode(echo, INPUT);
 }

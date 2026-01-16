@@ -5,7 +5,7 @@
 
 class MotorController
 {
-	public:
+public:
     Motor* leftMotor;
     Motor* rightMotor;
 

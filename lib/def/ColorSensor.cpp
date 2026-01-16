@@ -4,6 +4,7 @@
 void ColorSensor::readRed() {
   digitalWrite(S2, LOW);
   digitalWrite(S3, LOW);
+  //obs: pulseIn retorna unsigned long, isso pode dar overflow
   red = pulseIn(OUT, digitalRead(OUT) == HIGH ? LOW : HIGH) + redError;
   this->red = red;
 }
@@ -21,10 +22,14 @@ void ColorSensor::readBlue() {
 }
 
 // PUBLIC
-ColorSensor::ColorSensor(uint8_t S0, uint8_t S1, uint8_t S2, uint8_t S3, uint8_t OUT, uint8_t blackLineValueLine, uint8_t redError, uint8_t blueError)
-    : S0(S0), S1(S1), S2(S2), S3(S3), blackLineValueLine(blackLineValueLine), redError(redError), blueError(blueError), OUT(OUT), red(0), blue(0), green(0) {}
+ColorSensor::ColorSensor(byte S0, byte S1, byte S2, byte S3, byte OUT, byte blackLineValue, byte redError, byte blueError)
+: S0(S0), S1(S1), S2(S2), S3(S3), blackLineValue(blackLineValue), redError(redError), blueError(blueError), OUT(OUT), red(0), blue(0), green(0) {
+  this->red = 0;
+  this->green = 0;
+  this->blue = 0;
+}
 
-void ColorSensor::start() override {
+void ColorSensor::start() {
   pinMode(S0, OUTPUT);
   pinMode(S1, OUTPUT);
   pinMode(S2, OUTPUT);
@@ -33,6 +38,7 @@ void ColorSensor::start() override {
 
   delay(100);
   readColors();
+
   this->myr = this->red;
   this->myg = this->green;
   this->myb = this->blue;
@@ -41,46 +47,42 @@ void ColorSensor::start() override {
 }
 
 // IS methods
+// obs: sempre que se for usar esses metódos no código, é necessário chamar getColors antes
 bool ColorSensor::isWhite() { // sitcom do lab
-  if (retRed() <= (myr + 1) && retGreen() <= (myg + 1) && retBlue() <= (myb + 1))
+  if (red <= (myr + 1) && green <= (myg + 1) && blue <= (myb + 1))
     return true;
   else
     return false;
 }
 bool ColorSensor::isRed() {
-  if (retRed() < retBlue() && retRed() <= retGreen())
+  if (red < blue && red <= green)
     return true;
   else
     return false;
 }
 bool ColorSensor::isBlue() {
-  if (retBlue() < retGreen() && retBlue() < retRed())
+  if (blue < green && blue < red)
     return true;
   else
     return false;
 }
 bool ColorSensor::isGreen() {
-  if (retGreen() < retRed() && retGreen() < retBlue())
+  if (green < red && green < blue)
     return true;
   else
     return false;
 }
 bool ColorSensor::isBlack() {
-  this->readColors();
-  if(retRed() >= blackLineValueLine && retGreen() >= blackLineValueLine && retBlue() >= blackLineValueLine)
+  if(red >= blackLineValue && green >= blackLineValue && blue >= blackLineValue)
     return true;
   else
     return false;
-}
-unsigned int getRed() {
-  readRed();
-  return this->red;
 }
 
 // GETTERS without parameters
 unsigned int ColorSensor::getRed() {
   readRed();
-  return this->red
+  return this->red;
 }
 unsigned int ColorSensor::getGreen() {
   readGreen();
@@ -93,13 +95,13 @@ unsigned int ColorSensor::getBlue() {
 
 // GETTERS with parameters
 unsigned int ColorSensor::retRed() {
-    return this->red;
+  return this->red;
 }
-unsigned int ColorSensor::retRed() {
-    return this->green;
+unsigned int ColorSensor::retGreen() {
+  return this->green;
 }
-unsigned int ColorSensor::retRed() {
-    return this->blue;
+unsigned int ColorSensor::retBlue() {
+  return this->blue;
 }
 
 // readColors();

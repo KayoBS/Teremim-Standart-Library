@@ -9,14 +9,13 @@ void Motor::invertDirection() {
 
 // PUBLIC
 
-Motor::Motor(uint8_t leftPin, uint8_t rightPin, uint8_t enable, bool direction,
-             uint8_t velocity) {
+Motor::Motor(byte leftPin, byte rightPin, byte enable, bool direction, byte velocity) {
   this->leftPin = leftPin;
   this->rightPin = rightPin;
-  this->enable = enable;
+  this->enablePin = enable;
   this->direction = direction;
   this->velocity = velocity;
-}
+             }
 
 // ESPECIAL
 void Motor::start() {
@@ -27,15 +26,15 @@ void Motor::start() {
 
 // SETS
 
-void Motor::setLeftPin(uint8_t leftPin) { this->leftPin = leftPin; }
+void Motor::setLeftPin(byte leftPin) { this->leftPin = leftPin; }
 
-void Motor::setRightPin(uint8_t rightPin) { this->rightPin = rightPin; }
+void Motor::setRightPin(byte rightPin) { this->rightPin = rightPin; }
 
-void Motor::setEnablePin(uint8_t enable) { this->enable = enable; }
+void Motor::setEnablePin(byte enable) { this->enablePin = enable; }
 
 void Motor::setDirection(bool direction) { this->direction = direction; }
 
-void Motor::setVelocity(uint8_t velocity) {
+void Motor::setVelocity(byte velocity) {
   this->velocity = velocity;
 
   analogWrite(this->getEnablePin(), this->velocity);
@@ -43,15 +42,15 @@ void Motor::setVelocity(uint8_t velocity) {
 
 // GETS
 
-uint8_t Motor::getLeftPin() { return this->leftPin; }
+byte Motor::getLeftPin() { return this->leftPin; }
 
-uint8_t Motor::getRightPin() { return this->rightPin; }
+byte Motor::getRightPin() { return this->rightPin; }
 
-uint8_t Motor::getEnablePin() { return this->enablePin; }
+byte Motor::getEnablePin() { return this->enablePin; }
 
 bool Motor::getDirection() { return this->direction; }
 
-uint8_t Motor::getVelocity() { return this->velocity; }
+byte Motor::getVelocity() { return this->velocity; }
 
 void Motor::toggleDirection() {
   this->setDirection(!this->getDirection());
@@ -67,4 +66,5 @@ void Motor::run() {
 void Motor::stop() {
   digitalWrite(this->getLeftPin(), false);
   digitalWrite(this->getRightPin(), false);
+  analogWrite(this->getEnablePin(), 0);
 }

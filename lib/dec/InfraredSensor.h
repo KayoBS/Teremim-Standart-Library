@@ -5,10 +5,10 @@
 
 class InfraredSensor : public EletronicComponent {
 private:
-  uint8_t pin;
+  byte pin;
 
 public:
-  InfraredSensor(uint8_t pin);
+  InfraredSensor(byte pin);
 
   void start() override;
 

@@ -5,18 +5,18 @@
 
 class Acelerometer : public EletronicComponent {
 private:
-  uint8_t x_pin;
-  uint8_t y_pin;
-  uint8_t z_pin; // zepellin
+  byte x_pin;
+  byte y_pin;
+  byte z_pin; // zepellin
 
 public:
-  Acelerometer(uint8_t x, uint8_t y, uint8_t z);
-  void start();
+  Acelerometer(byte x, byte y, byte z);
+  void start() override;
 
   // getters
-  uint8_t getx();
-  uint8_t gety();
-  uint8_t getz();
+  byte getx();
+  byte gety();
+  byte getz();
 };
 
 #endif
