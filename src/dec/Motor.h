@@ -20,9 +20,11 @@ public:
 
   void start() override;
 
+  /*
   void setLeftPin(byte leftPin);
   void setRightPin(byte rightPin);
   void setEnablePin(byte enable);
+  */
 
   byte getLeftPin();
   byte getRightPin();

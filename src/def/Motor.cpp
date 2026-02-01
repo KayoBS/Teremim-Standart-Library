@@ -9,13 +9,14 @@ void Motor::invertDirection() {
 
 // PUBLIC
 
-Motor::Motor(byte leftPin, byte rightPin, byte enable, bool direction, byte velocity) {
+Motor::Motor(byte leftPin, byte rightPin, byte enable, bool direction,
+             byte velocity) {
   this->leftPin = leftPin;
   this->rightPin = rightPin;
   this->enablePin = enable;
   this->direction = direction;
   this->velocity = velocity;
-             }
+}
 
 // ESPECIAL
 void Motor::start() {
@@ -25,12 +26,6 @@ void Motor::start() {
 }
 
 // SETS
-
-void Motor::setLeftPin(byte leftPin) { this->leftPin = leftPin; }
-
-void Motor::setRightPin(byte rightPin) { this->rightPin = rightPin; }
-
-void Motor::setEnablePin(byte enable) { this->enablePin = enable; }
 
 void Motor::setDirection(bool direction) { this->direction = direction; }
 
